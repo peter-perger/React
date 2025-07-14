@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson 01 - Exercises</title>
+  </head>
+  <body>
+    <!--Container for react to render and keep things organised-->
+    <div class="js-container"></div>
+
+    <!--DayJS external libary-->
+    <script src="https://unpkg.com/supersimpledev@8.6.4/dayjs.js"></script>
+
+    <!--Loads the react external libary-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script type="text/babel">
+      /*
+      const button = <button>Good job!</button>
+      const paragraph = <p>My name is Peter</p>
+      
+      const tShirtPrice = 8;
+      const sockPackPrice = 10;
+      const productCost = (tShirtPrice * 2) + sockPackPrice;
+      
+      const shippingCost = 5;
+      
+      console.log(productCost);
+      */
+
+      const date = dayjs().format('MMMM D')
+      
+      /*Setting up and using react*/
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      setInterval(() => {
+        const paragraph = <p>Current tme: {dayjs().format('HH:mm:ss')}</p>
+        root.render(paragraph);
+      }, 1000)
+      
+    </script>
+  </body>
+</html>   
