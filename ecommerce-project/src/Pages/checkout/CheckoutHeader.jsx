@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import Logo from '../assets/images/logo.png';
-import MobileLogo from '../assets/images/mobile-logo.png';
+import Logo from '../../assets/images/logo.png';
+import MobileLogo from '../../assets/images/mobile-logo.png';
 import "./CheckoutHeader.css";
 
 export function CheckoutHeader() {
