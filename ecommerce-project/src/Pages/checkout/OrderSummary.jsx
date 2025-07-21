@@ -1,5 +1,6 @@
 import { CartItemDetails } from "./CartItemDetails";
 import { DeliveryOptions } from "./DeliveryOptions";
+import { DeliveryDate } from "./DeliveryDate";
 
 export function OrderSummary( {cart, deliveryOptions} ) {
   return (
@@ -7,7 +8,7 @@ export function OrderSummary( {cart, deliveryOptions} ) {
       {deliveryOptions.length > 0 && cart.map((cartItem) => {
         return (
           <div key={cartItem.productId} className="cart-item-container">
-            <DeliveryOptions cartItem = {cartItem} deliveryOptions={deliveryOptions}/>
+            <DeliveryDate cartItem = {cartItem} deliveryOptions={deliveryOptions}/>
 
             <div className="cart-item-details-grid">
               <img className="product-image"
