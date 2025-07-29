@@ -1,10 +1,10 @@
 import { Link, NavLink, useNavigate, useSearchParams } from 'react-router';
+import { useState } from 'react';
 import CartIcon from '../../public/images/icons/cart-icon.png';
 import SearchIcon from '../../public/images/icons/search-icon.png';
 import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import "./Header.css";
-import { useState } from 'react';
 
 export function Header({ cart }) {
   const [searchParams] = useSearchParams();
@@ -24,7 +24,6 @@ export function Header({ cart }) {
   }
 
   const searchProduct = () => {
-    console.log('for-now');
     navigate(`/?search=${search}`);
   }
 
