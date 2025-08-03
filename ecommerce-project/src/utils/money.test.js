@@ -7,7 +7,7 @@ describe('formatMoney', () => {
   });
 
   it('displays two decimals', () => {
-    expect(formatMoney(1090)).toBe('$10.90');
+    expect(formatMoney(1990)).toBe('$19.90');
     expect(formatMoney(100)).toBe('$1.00');
   });
 });
