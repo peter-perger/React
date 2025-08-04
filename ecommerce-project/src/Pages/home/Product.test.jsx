@@ -73,3 +73,5 @@ describe('Product component', () => {
     expect(loadCart).toHaveBeenCalled();
   })
 })
+
+//40:00
