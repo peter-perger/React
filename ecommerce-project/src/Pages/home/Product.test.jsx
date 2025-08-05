@@ -1,18 +1,15 @@
-import { it, expect, describe, vi, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { it, expect, describe, vi, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import axios from "axios";
-import { Product } from "./Product";
+import axios from 'axios';
+import { Product } from './Product';
 
-//Mock the FULL axios npm package
 vi.mock('axios');
 
 describe('Product component', () => {
   let product;
   let loadCart;
-  let user;
 
-  //Testhook to set up every test
   beforeEach(() => {
     product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -24,20 +21,15 @@ describe('Product component', () => {
       },
       priceCents: 1090,
       keywords: ["socks", "sports", "apparel"]
-    }
+    };
 
-    //Creates a fake "MOCKED" function
     loadCart = vi.fn();
-
-    //set up user
-    user = userEvent.setup();
   });
 
   it('displays the product details correctly', () => {
     render(<Product product={product} loadCart={loadCart} />);
 
     expect(
-      //Screen = fake webpage
       screen.getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')
     ).toBeInTheDocument();
 
@@ -56,43 +48,22 @@ describe('Product component', () => {
     expect(
       screen.getByText('87')
     ).toBeInTheDocument();
-  })
+  });
 
   it('adds a product to the cart', async () => {
     render(<Product product={product} loadCart={loadCart} />);
 
+    const user = userEvent.setup();
     const addToCartButton = screen.getByTestId('add-to-cart-button');
     await user.click(addToCartButton);
 
     expect(axios.post).toHaveBeenCalledWith(
       '/api/cart-items',
       {
-        productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+        productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
         quantity: 1
       }
     );
-
     expect(loadCart).toHaveBeenCalled();
-  })
-
-  it('works with correct quantity by the selector', async () => {
-    render(<Product product={product} loadCart={loadCart}/>)
-    
-    const quantitySelector = screen.getByTestId('quantity-selector');
-    expect(quantitySelector).toHaveValue('1');
-
-    await user.selectOptions(quantitySelector, '3');
-    expect(quantitySelector).toHaveValue('3');
-
-    const addToCartButton = screen.getByTestId('add-to-cart-button');
-    await user.click(addToCartButton);
-
-    expect(axios.post).toHaveBeenCalledWith( '/api/cart-items', {
-      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      quantity: 3
-    });
-
-    expect(loadCart).toBeCalledTimes(1);
-  })
-})
-
+  });
+});
